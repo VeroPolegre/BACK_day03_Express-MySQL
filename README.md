@@ -75,4 +75,4 @@ Create a CategoryController.js that contains all the categories actions
 
 | Node.js | Express | MySQL | JS |
 
-Completed by [Vero Polegre](https://github.com/VeroPolegre)
+Completed by [Francesc Alberola](https://github.com/cescalberola) and [Vero Polegre](https://github.com/VeroPolegre)
