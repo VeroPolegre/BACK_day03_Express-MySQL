@@ -4,6 +4,7 @@ const db = require("./config/database");
 const PORT = 3000;
 
 app.use(express.json());
+
 app.use("/categories", require("./routes/categories"));
 app.use("/products", require("./routes/products"));
 
