@@ -1,0 +1,20 @@
+{
+  "name": "back_day03_express-mysql",
+  "version": "1.0.0",
+  "description": "- Handle Node js\r - Understand how to interact with Express js\r - Learn to use Express js\r - Handle NPM\r - Learn to use MySql with Express",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
