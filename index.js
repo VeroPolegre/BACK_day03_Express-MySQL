@@ -19,7 +19,7 @@ app.get("/createdb", (req, res) => {
 
 app.get("/create_products_table", (req, res) => {
   let sql =
-    "CREATE TABLE products(id INT AUTO_INCREMENT, name_product VARCHAR(255), price INT, PRIMARY KEY(id))";
+    "CREATE TABLE products(id INT AUTO_INCREMENT, name_product VARCHAR(250), price INT, PRIMARY KEY(id))";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
