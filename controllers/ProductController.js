@@ -75,6 +75,14 @@ const ProductController = {
       res.send(result);
     });
   },
+  deleteProductById(req, res) {
+    const productId = req.params.id;
+    const sql = "DELETE FROM products WHERE id = ?";
+    db.query(sql, [productId], (err, result) => {
+      console.log(result);
+      res.send("Product deleted!");
+    });
+  },
 };
 
 module.exports = ProductController;

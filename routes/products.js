@@ -12,4 +12,6 @@ router.get(
 router.get("/id/:id", ProductController.getById);
 router.get("/descending", ProductController.getProductsDescending);
 router.get("/name", ProductController.searchProductByName);
+router.delete("/:id", ProductController.deleteProductById);
+
 module.exports = router;
