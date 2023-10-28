@@ -2,6 +2,7 @@ const db = require("../config/database.js");
 
 const ProductController = {
   create(req, res) {
+    console.log("hallo");
     let product = {
       name_product: req.body.name_product,
       price: req.body.price,
@@ -13,6 +14,7 @@ const ProductController = {
       res.status(201).send("Product added!");
     });
   },
+
   update(req, res) {
     let productId = req.params.id;
     let newProduct = {
@@ -26,6 +28,7 @@ const ProductController = {
       res.status(200).send("Product updated!");
     });
   },
+
   getAll(req, res) {
     let sql = "SELECT * FROM products";
     db.query(sql, (err, result) => {
@@ -33,6 +36,7 @@ const ProductController = {
       res.status(200).send(result);
     });
   },
+
   getAllProductsWithCategories(req, res) {
     let sql = `
       SELECT products.*, categories.name_category
@@ -45,6 +49,7 @@ const ProductController = {
       res.status(200).send(result);
     });
   },
+
   getById(req, res) {
     let sql = `SELECT * FROM products WHERE id = ${req.params.id}`;
     db.query(sql, (err, result) => {
@@ -52,6 +57,7 @@ const ProductController = {
       res.status(200).send(result);
     });
   },
+
   getProductsDescending(req, res) {
     let sql = "SELECT * FROM products ORDER BY id DESC";
     db.query(sql, (err, result) => {
@@ -60,6 +66,7 @@ const ProductController = {
       res.status(200).send(result);
     });
   },
+
   getProductByName(req, res) {
     const nameProduct = req.params.name_product;
     const sql = `SELECT * FROM products WHERE name_product = ?`;
@@ -69,6 +76,7 @@ const ProductController = {
       res.status(200).send(result);
     });
   },
+
   deleteProductById(req, res) {
     const productId = req.params.id;
     const sql = "DELETE FROM products WHERE id = ?";
