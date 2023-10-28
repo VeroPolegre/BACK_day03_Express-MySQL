@@ -26,7 +26,6 @@ const ProductController = {
       res.status(200).send("Product updated!");
     });
   },
-
   getAll(req, res) {
     let sql = "SELECT * FROM products";
     db.query(sql, (err, result) => {
@@ -34,14 +33,12 @@ const ProductController = {
       res.status(200).send(result);
     });
   },
-
   getAllProductsWithCategories(req, res) {
     let sql = `
       SELECT products.*, categories.name_category
       FROM products
       LEFT JOIN categories ON products.category_id = categories.id
     `;
-
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result);
