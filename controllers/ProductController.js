@@ -6,11 +6,27 @@ const ProductController = {
       name_product: req.body.name_product,
       price: req.body.price,
     };
+    const { category_id } = req.body;
     let sql = "INSERT INTO products SET ?";
     db.query(sql, product, (err, result) => {
       if (err) throw err;
       console.log(result);
-      res.status(201).send("Product added!");
+      db.query(
+        "SELECT * FROM products WHERE id = LAST_INSERT_ID()",
+        (err, result) => {
+          if (err) throw err;
+          const product_id = result[0].id;
+          db.query(
+            "INSERT INTO product_has_categories SET ?",
+            { category_id, product_id },
+            (err, result) => {
+              if (err) throw err;
+              console.log(result);
+              res.status(201).send("Product added successfully!");
+            }
+          );
+        }
+      );
     });
   },
 
