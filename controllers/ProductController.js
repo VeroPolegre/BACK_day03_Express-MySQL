@@ -2,12 +2,12 @@ const db = require("../config/database.js");
 
 const ProductController = {
   create(req, res) {
-    let product = {
+    const product = {
       name_product: req.body.name_product,
       price: req.body.price,
     };
     const { category_id } = req.body;
-    let sql = "INSERT INTO products SET ?";
+    const sql = "INSERT INTO products SET ?";
     db.query(sql, product, (err, result) => {
       if (err) throw err;
       console.log(result);
@@ -35,7 +35,7 @@ const ProductController = {
     const newName = req.body.name_product;
     const newPrice = req.body.price;
 
-    let sql = "UPDATE products SET name_product = ?, price = ? WHERE id = ?";
+    const sql = "UPDATE products SET name_product = ?, price = ? WHERE id = ?";
     db.query(sql, [newName, newPrice, productId], (err, result) => {
       if (err) throw err;
       console.log(result);
@@ -44,7 +44,7 @@ const ProductController = {
   },
 
   getAll(req, res) {
-    let sql = "SELECT * FROM products";
+    const sql = "SELECT * FROM products";
     db.query(sql, (err, result) => {
       if (err) throw err;
       res.status(200).send(result);
@@ -52,7 +52,7 @@ const ProductController = {
   },
 
   getAllProductsWithCategories(req, res) {
-    let sql = `
+    const sql = `
     SELECT products.name_product, categories.name_category
     FROM products
     INNER JOIN product_has_categories ON products.id = product_has_categories.product_id
@@ -65,7 +65,7 @@ const ProductController = {
   },
 
   getById(req, res) {
-    let sql = `SELECT * FROM products WHERE id = ${req.params.id}`;
+    const sql = `SELECT * FROM products WHERE id = ${req.params.id}`;
     db.query(sql, (err, result) => {
       if (err) throw err;
       res.status(200).send(result);
@@ -73,7 +73,7 @@ const ProductController = {
   },
 
   getProductsDescending(req, res) {
-    let sql = "SELECT * FROM products ORDER BY id DESC";
+    const sql = "SELECT * FROM products ORDER BY id DESC";
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result);
