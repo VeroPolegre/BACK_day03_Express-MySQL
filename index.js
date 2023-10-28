@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const db = require("./config/database");
+const db = require("./config/database.js");
 const PORT = 3000;
 
 app.use(express.json());
 
-app.use("/categories", require("./routes/categories"));
-app.use("/products", require("./routes/products"));
+app.use("/categories", require("./routes/categories.js"));
+app.use("/products", require("./routes/products.js"));
 
 app.get("/createdb", (req, res) => {
   let sql = "CREATE DATABASE expressDB";

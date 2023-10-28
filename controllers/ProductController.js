@@ -10,25 +10,21 @@ const ProductController = {
     db.query(sql, product, (err, result) => {
       if (err) throw err;
       console.log(result);
-      res.send("Product added!");
+      res.status(201).send("Product added!");
     });
   },
   update(req, res) {
+    let productId = req.params.id;
     let newProduct = {
       name_product: req.body.name_product,
       price: req.body.price,
     };
-    let productId = req.params.id;
-    let sql = "UPDATE products SET name_product = ?, price = ? WHERE id = ?";
-    db.query(
-      sql,
-      [newProduct.name_product, newProduct.price, productId],
-      (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        res.send("Product updated!");
-      }
-    );
+    let sql = "UPDATE products SET ? WHERE id = ?";
+    db.query(sql, [newProduct, productId], (err, result) => {
+      if (err) throw err;
+      console.log(result);
+      res.status(200).send("Product updated!");
+    });
   },
 
   getAll(req, res) {
