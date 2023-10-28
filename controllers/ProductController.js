@@ -2,7 +2,6 @@ const db = require("../config/database.js");
 
 const ProductController = {
   create(req, res) {
-    console.log("hallo");
     let product = {
       name_product: req.body.name_product,
       price: req.body.price,
@@ -16,16 +15,15 @@ const ProductController = {
   },
 
   update(req, res) {
-    let productId = req.params.id;
-    let newProduct = {
-      name_product: req.body.name_product,
-      price: req.body.price,
-    };
-    let sql = "UPDATE products SET ? WHERE id = ?";
-    db.query(sql, [newProduct, productId], (err, result) => {
+    const productId = req.params.id;
+    const newName = req.body.name_product;
+    const newPrice = req.body.price;
+
+    let sql = "UPDATE products SET name_product = ?, price = ? WHERE id = ?";
+    db.query(sql, [newName, newPrice, productId], (err, result) => {
       if (err) throw err;
       console.log(result);
-      res.status(200).send("Product updated!");
+      res.status(200).send(`Product ${newName} updated!!`);
     });
   },
 
