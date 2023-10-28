@@ -80,7 +80,7 @@ const ProductController = {
     const sql = "DELETE FROM products WHERE id = ?";
     db.query(sql, [productId], (err, result) => {
       console.log(result);
-      res.status(204).send("Product deleted!");
+      res.status(204).send(`Product ${req.body.name_product} deleted!`);
     });
   },
 };
