@@ -31,7 +31,7 @@ const ProductController = {
     let sql = "SELECT * FROM products";
     db.query(sql, (err, result) => {
       if (err) throw err;
-      res.send(result);
+      res.status(200).send(result);
     });
   },
 
@@ -45,14 +45,14 @@ const ProductController = {
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result);
-      res.send(result);
+      res.status(200).send(result);
     });
   },
   getById(req, res) {
     let sql = `SELECT * FROM products WHERE id = ${req.params.id}`;
     db.query(sql, (err, result) => {
       if (err) throw err;
-      res.send(result);
+      res.status(200).send(result);
     });
   },
   getProductsDescending(req, res) {
@@ -60,15 +60,16 @@ const ProductController = {
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result);
-      res.send(result);
+      res.status(200).send(result);
     });
   },
-  searchProductByName(req, res) {
-    const sql = "SELECT * FROM products WHERE name_product LIKE ?";
-    db.query(sql, (err, result) => {
+  getProductByName(req, res) {
+    const nameProduct = req.params.name_product;
+    const sql = `SELECT * FROM products WHERE name_product = ?`;
+    db.query(sql, [nameProduct], (err, result) => {
       if (err) throw err;
       console.log(result);
-      res.send(result);
+      res.status(200).send(result);
     });
   },
   deleteProductById(req, res) {
@@ -76,7 +77,7 @@ const ProductController = {
     const sql = "DELETE FROM products WHERE id = ?";
     db.query(sql, [productId], (err, result) => {
       console.log(result);
-      res.send("Product deleted!");
+      res.status(204).send("Product deleted!");
     });
   },
 };
