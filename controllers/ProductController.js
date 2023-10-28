@@ -37,10 +37,10 @@ const ProductController = {
 
   getAllProductsWithCategories(req, res) {
     let sql = `
-      SELECT products.*, categories.name_category
-      FROM products
-      LEFT JOIN categories ON products.category_id = categories.id
-    `;
+    SELECT products.name_product, categories.name_category
+    FROM products
+    INNER JOIN product_has_categories ON products.id = product_has_categories.product_id
+    INNER JOIN categories ON product_has_categories.category_id = categories.id`;
     db.query(sql, (err, result) => {
       if (err) throw err;
       console.log(result);

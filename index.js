@@ -37,21 +37,21 @@ app.get("/create_categories_table", (req, res) => {
   });
 });
 
-app.get("/create_product_categories_table", (req, res) => {
+app.get("/create_product_has_categories_table", (req, res) => {
   let sql = `
-    CREATE TABLE product_categories (
+    CREATE TABLE product_has_categories (
+      id INT AUTO_INCREMENT,
       product_id INT,
       category_id INT,
-      PRIMARY KEY (product_id, category_id),
-      FOREIGN KEY (product_id) REFERENCES products(id),
-      FOREIGN KEY (category_id) REFERENCES categories(id)
-    )
-  `;
+      PRIMARY KEY(id),
+      FOREIGN KEY(product_id) REFERENCES expressDB.products(id),
+      FOREIGN KEY(category_id) REFERENCES expressDB.categories(id)
+    )`;
 
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
-    res.send("Product Categories table created...");
+    res.send("Product with categories table created...");
   });
 });
 
