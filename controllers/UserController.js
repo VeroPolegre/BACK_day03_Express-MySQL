@@ -42,6 +42,14 @@ const UserController = {
     });
   },
 
+  getAllUsersWithOrders(req, res) {
+    const sql = "SELECT * FROM orders";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      res.status(200).send(result);
+    });
+  },
+
   getById(req, res) {
     const sql = `SELECT * FROM users WHERE id = ${req.params.id}`;
     db.query(sql, (err, result) => {

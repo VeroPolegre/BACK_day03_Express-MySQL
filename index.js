@@ -8,7 +8,7 @@ app.use(express.json());
 app.use("/categories", require("./routes/categories.js"));
 app.use("/products", require("./routes/products.js"));
 app.use("/users", require("./routes/users.js"));
-// app.use("/orders", require("./routes/orders.js"));
+app.use("/orders", require("./routes/orders.js"));
 
 app.get("/createdb", (req, res) => {
   const sql = "CREATE DATABASE expressDB";
