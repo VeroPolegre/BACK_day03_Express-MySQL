@@ -9,7 +9,7 @@ app.use("/categories", require("./routes/categories.js"));
 app.use("/products", require("./routes/products.js"));
 
 app.get("/createdb", (req, res) => {
-  let sql = "CREATE DATABASE expressDB";
+  const sql = "CREATE DATABASE expressDB";
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -18,7 +18,7 @@ app.get("/createdb", (req, res) => {
 });
 
 app.get("/create_products_table", (req, res) => {
-  let sql =
+  const sql =
     "CREATE TABLE products(id INT AUTO_INCREMENT, name_product VARCHAR(250), price INT, PRIMARY KEY(id))";
   db.query(sql, (err, result) => {
     if (err) throw err;
@@ -28,7 +28,7 @@ app.get("/create_products_table", (req, res) => {
 });
 
 app.get("/create_categories_table", (req, res) => {
-  let sql =
+  const sql =
     "CREATE TABLE categories(id INT AUTO_INCREMENT, name_category VARCHAR(255), description VARCHAR(255), PRIMARY KEY(id))";
   db.query(sql, (err, result) => {
     if (err) throw err;
@@ -38,7 +38,7 @@ app.get("/create_categories_table", (req, res) => {
 });
 
 app.get("/create_product_has_categories_table", (req, res) => {
-  let sql = `
+  const sql = `
     CREATE TABLE product_has_categories (
       id INT AUTO_INCREMENT,
       product_id INT,
